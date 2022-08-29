@@ -29,7 +29,7 @@ class _WithoutProviderScreenState extends State<WithoutProviderScreen> {
     print("build no $count");
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Why Provider Screen"),
+        title: const Text("Without Provider Screen"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
