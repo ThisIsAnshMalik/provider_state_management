@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider_state_management/screens/without_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Provider state management',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: const WithoutProviderScreen(),
     );
   }
 }
