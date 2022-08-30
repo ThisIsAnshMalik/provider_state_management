@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/count_provider.dart';
 import 'package:provider_state_management/screens/slider_example.dart';
-import 'package:provider_state_management/screens/timer_screens/with_provider_screen.dart';
-import 'package:provider_state_management/screens/timer_screens/without_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +12,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: ((context) => CountProvider()),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: ((context) => CountProvider()),
+          ),
+          ChangeNotifierProvider(create: ((context) => SliderProvider()))
+        ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Provider state management',
