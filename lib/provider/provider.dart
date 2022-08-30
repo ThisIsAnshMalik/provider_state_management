@@ -17,3 +17,18 @@ class SliderProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class FavouriteProvider with ChangeNotifier {
+  List<int> _selectedItem = [];
+  List<int> get selectedItem => _selectedItem;
+
+  void addFavourite(int index) {
+    _selectedItem.add(index);
+    notifyListeners();
+  }
+
+  void removeFavourite(int index) {
+    _selectedItem.remove(index);
+    notifyListeners();
+  }
+}

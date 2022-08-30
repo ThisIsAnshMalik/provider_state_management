@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/provider.dart';
 import 'package:provider_state_management/screens/favourite/favourite_screen.dart';
-import 'package:provider_state_management/screens/slider_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-            create: ((context) => CountProvider()),
-          ),
+          ChangeNotifierProvider(create: ((context) => CountProvider())),
+          ChangeNotifierProvider(create: ((context) => FavouriteProvider())),
           ChangeNotifierProvider(create: ((context) => SliderProvider()))
         ],
         child: MaterialApp(
