@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/count_provider.dart';
+import 'package:provider_state_management/screens/slider_example.dart';
 import 'package:provider_state_management/screens/timer_screens/with_provider_screen.dart';
 import 'package:provider_state_management/screens/timer_screens/without_provider_screen.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const WithProviderScreen(),
+          home: const SliderExampleScreen(),
         ));
   }
 }
