@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class CountProvider extends ChangeNotifier {
+class CountProvider with ChangeNotifier {
   int _count = 0;
   int get count => _count;
   void setCount() {
@@ -9,7 +9,7 @@ class CountProvider extends ChangeNotifier {
   }
 }
 
-class SliderProvider extends ChangeNotifier {
+class SliderProvider with ChangeNotifier {
   double _value = 1.0;
   double get value => _value;
   void setValue(val) {

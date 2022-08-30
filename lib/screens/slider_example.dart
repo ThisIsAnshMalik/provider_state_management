@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_state_management/provider/count_provider.dart';
+import 'package:provider_state_management/provider/provider.dart';
 
 class SliderExampleScreen extends StatefulWidget {
   const SliderExampleScreen({Key? key}) : super(key: key);
@@ -11,7 +11,6 @@ class SliderExampleScreen extends StatefulWidget {
 
 class _SliderExampleScreenState extends State<SliderExampleScreen> {
   int n = 0;
-  double value = 1.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
