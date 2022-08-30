@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/count_provider.dart';
-import 'package:provider_state_management/screens/with_provider_screen.dart';
-import 'package:provider_state_management/screens/without_provider_screen.dart';
+import 'package:provider_state_management/screens/timer_screens/with_provider_screen.dart';
+import 'package:provider_state_management/screens/timer_screens/without_provider_screen.dart';
 
 void main() {
   runApp(const MyApp());
