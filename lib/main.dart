@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/provider.dart';
+import 'package:provider_state_management/screens/app_theme.dart';
 import 'package:provider_state_management/screens/favourite/favourite_screen.dart';
 
 void main() {
@@ -16,15 +17,23 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: ((context) => CountProvider())),
           ChangeNotifierProvider(create: ((context) => FavouriteProvider())),
-          ChangeNotifierProvider(create: ((context) => SliderProvider()))
+          ChangeNotifierProvider(create: ((context) => SliderProvider())),
+          ChangeNotifierProvider(create: ((context) => ThemeProvider()))
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Provider state management',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const FavouriteScreen(),
+        child: Builder(
+          builder: (context) {
+            final themeProvider = Provider.of<ThemeProvider>(context);
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Provider state management',
+              themeMode: themeProvider.thememode,
+              darkTheme: ThemeData(brightness: Brightness.dark),
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              home: const AppThemeScreen(),
+            );
+          },
         ));
   }
 }

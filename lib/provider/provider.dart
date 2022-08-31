@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class CountProvider with ChangeNotifier {
   int _count = 0;
@@ -29,6 +30,16 @@ class FavouriteProvider with ChangeNotifier {
 
   void removeFavourite(int index) {
     _selectedItem.remove(index);
+    notifyListeners();
+  }
+}
+
+class ThemeProvider with ChangeNotifier {
+  var _themeMode = ThemeMode.light;
+  ThemeMode get thememode => _themeMode;
+
+  void setTheme(thememode) {
+    _themeMode = thememode;
     notifyListeners();
   }
 }
