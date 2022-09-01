@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_state_management/provider/provider.dart';
+import 'package:provider_state_management/screens/Login_screen.dart';
 import 'package:provider_state_management/screens/stateless_as_statefull.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 primarySwatch: Colors.blue,
               ),
-              home: StatelessAsStatefullScreen(),
+              home: LoginScreen(),
             );
           },
         ));
