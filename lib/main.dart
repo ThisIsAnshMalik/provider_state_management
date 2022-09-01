@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_state_management/provider/count_provider.dart';
-import 'package:provider_state_management/screens/slider_example.dart';
-import 'package:provider_state_management/screens/timer_screens/with_provider_screen.dart';
-import 'package:provider_state_management/screens/timer_screens/without_provider_screen.dart';
+import 'package:provider_state_management/provider/provider.dart';
+import 'package:provider_state_management/screens/stateless_as_statefull.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,15 +12,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: ((context) => CountProvider()),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Provider state management',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const SliderExampleScreen(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: ((context) => CountProvider())),
+          ChangeNotifierProvider(create: ((context) => FavouriteProvider())),
+          ChangeNotifierProvider(create: ((context) => SliderProvider())),
+          ChangeNotifierProvider(create: ((context) => ThemeProvider()))
+        ],
+        child: Builder(
+          builder: (context) {
+            final themeProvider = Provider.of<ThemeProvider>(context);
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Provider state management',
+              themeMode: themeProvider.thememode,
+              darkTheme: ThemeData(brightness: Brightness.dark),
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+              ),
+              home: StatelessAsStatefullScreen(),
+            );
+          },
         ));
   }
 }

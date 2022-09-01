@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_state_management/provider/provider.dart';
 
 class SliderExampleScreen extends StatefulWidget {
   const SliderExampleScreen({Key? key}) : super(key: key);
@@ -9,7 +11,6 @@ class SliderExampleScreen extends StatefulWidget {
 
 class _SliderExampleScreenState extends State<SliderExampleScreen> {
   int n = 0;
-  double value = 1.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,30 +26,33 @@ class _SliderExampleScreenState extends State<SliderExampleScreen> {
           const SizedBox(
             height: 50,
           ),
-          Slider(
-              value: value,
-              onChanged: (val) {
-                setState(() {
-                  value = val;
+          Consumer<SliderProvider>(builder: ((context, value, child) {
+            return Slider(
+                value: value.value,
+                onChanged: (val) {
+                  value.setValue(val);
                 });
-              }),
-          Row(
-            children: [
-              Expanded(
-                  child: Container(
-                height: 100,
-                decoration: BoxDecoration(color: Colors.red.withOpacity(value)),
-                child: const Center(child: Text("Container 1")),
-              )),
-              Expanded(
-                  child: Container(
-                height: 100,
-                decoration:
-                    BoxDecoration(color: Colors.green.withOpacity(value)),
-                child: const Center(child: Text("Container 1")),
-              ))
-            ],
-          )
+          })),
+          Consumer<SliderProvider>(builder: ((context, value, child) {
+            return Row(
+              children: [
+                Expanded(
+                    child: Container(
+                  height: 100,
+                  decoration:
+                      BoxDecoration(color: Colors.red.withOpacity(value.value)),
+                  child: const Center(child: Text("Container 1")),
+                )),
+                Expanded(
+                    child: Container(
+                  height: 100,
+                  decoration: BoxDecoration(
+                      color: Colors.green.withOpacity(value.value)),
+                  child: const Center(child: Text("Container 1")),
+                ))
+              ],
+            );
+          }))
         ],
       ),
     );
