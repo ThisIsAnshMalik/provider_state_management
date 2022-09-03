@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_state_management/provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -10,8 +12,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
@@ -44,18 +48,26 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.all(25.0),
             child: InkWell(
-              onTap: (() {}),
+              onTap: (() {
+                authProvider.login(_emailController.text.toString(),
+                    _passwordController.text.toString());
+              }),
               child: Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.deepOrange),
-                child: const Center(
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-                  ),
+                child: Center(
+                  child: authProvider.isLoading
+                      ? const CircularProgressIndicator(
+                          color: Colors.black,
+                        )
+                      : const Text(
+                          "Login",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w600),
+                        ),
                 ),
               ),
             ),

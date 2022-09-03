@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class CountProvider with ChangeNotifier {
   int _count = 0;
@@ -41,5 +42,37 @@ class ThemeProvider with ChangeNotifier {
   void setTheme(thememode) {
     _themeMode = thememode;
     notifyListeners();
+  }
+}
+
+class AuthProvider with ChangeNotifier {
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  void login(String email, String password) async {
+    try {
+      setLoading(true);
+      Response response =
+          await post(Uri.parse("https://reqres.in/api/login"), body: {
+        "email": email,
+        "password": password,
+      });
+
+      if (response.statusCode == 200) {
+        print("Login successfuly");
+        setLoading(false);
+      } else {
+        print("Login failed");
+        setLoading(false);
+      }
+    } catch (e) {
+      print("login fail error : ${e.toString()}");
+      setLoading(false);
+    }
   }
 }

@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: ((context) => CountProvider())),
           ChangeNotifierProvider(create: ((context) => FavouriteProvider())),
           ChangeNotifierProvider(create: ((context) => SliderProvider())),
-          ChangeNotifierProvider(create: ((context) => ThemeProvider()))
+          ChangeNotifierProvider(create: ((context) => ThemeProvider())),
+          ChangeNotifierProvider(create: ((context) => AuthProvider()))
         ],
         child: Builder(
           builder: (context) {
